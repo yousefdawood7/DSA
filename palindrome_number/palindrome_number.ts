@@ -12,6 +12,15 @@ export const isPalindromeNumber = function (number: number) {
   return number === reversedNumber;
 };
 
+export const isPalindromeNumberIterative = function (number: number) {
+  let reversed = 0;
+
+  for (let i = number; i >= 1; i /= 10)
+    reversed = reversed * 10 + Math.trunc(i % 10);
+
+  return number === reversed;
+};
+
 /*
   TIME COMPLEXITIES
     Worst Case => O(log(n))
