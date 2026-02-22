@@ -1,4 +1,4 @@
-const firstNNaturalNumbers = function (number: number) {
+export const firstNNaturalNumbers = function (number: number) {
   return (number * (number + 1)) / 2;
 };
 
@@ -16,7 +16,7 @@ const firstNNaturalNumbers = function (number: number) {
     Big O => O(1)
 */
 
-const firstNNaturalNumbersIterative = function (number: number) {
+export const firstNNaturalNumbersIterative = function (number: number) {
   let result = 0;
 
   // prettier-ignore
@@ -40,7 +40,7 @@ const firstNNaturalNumbersIterative = function (number: number) {
     Big O => O(n)
 */
 
-const firstNNaturalNumbersNestedIterative = function (number: number) {
+export const firstNNaturalNumbersNestedIterative = function (number: number) {
   let result = 0;
 
   // prettier-ignore
@@ -66,12 +66,14 @@ const firstNNaturalNumbersNestedIterative = function (number: number) {
     Big O => O(n^2)
 */
 
-const firstNNaturalNumbersNestedRecursive = function (number: number): number {
+export const firstNNaturalNumbersNestedRecursive = function (
+  number: number,
+): number {
   // prettier-ignore
   if (number === 0)
     return 0;
 
-  return 1 + firstNNaturalNumbersNestedRecursive(number - 1);
+  return number + firstNNaturalNumbersNestedRecursive(number - 1);
 };
 
 /*
