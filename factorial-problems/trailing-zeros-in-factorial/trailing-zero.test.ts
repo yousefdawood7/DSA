@@ -1,5 +1,9 @@
 import { describe, it, expect } from "vitest";
-import { trailingZero, trailingZeroByFive } from "./trailing-zero";
+import {
+  trailingZero,
+  trailingZero2,
+  trailingZeroByFive,
+} from "./trailing-zero";
 
 describe("trailingZero", () => {
   it("should return 0 for 0!", () => {
@@ -125,6 +129,135 @@ describe("trailingZero", () => {
 
   it("125! should have 3 more trailing zeros than 124! (125 = 5³)", () => {
     expect(trailingZero(125n) - trailingZero(124n)).toBe(3n);
+  });
+});
+
+// ─── trailingZero2 ─────────────────────────────────────────────────────────────
+
+describe("trailingZero2", () => {
+  it("should return 0 for 0!", () => {
+    expect(trailingZero2(0n)).toBe(0n);
+  });
+
+  it("should return 0 for 1!", () => {
+    expect(trailingZero2(1n)).toBe(0n);
+  });
+
+  it("should return 0 for 2!", () => {
+    expect(trailingZero2(2n)).toBe(0n);
+  });
+
+  it("should return 0 for 3!", () => {
+    expect(trailingZero2(3n)).toBe(0n);
+  });
+
+  it("should return 0 for 4!", () => {
+    expect(trailingZero2(4n)).toBe(0n);
+  });
+
+  it("should return 1 for 5! (first multiple of 5)", () => {
+    expect(trailingZero2(5n)).toBe(1n);
+  });
+
+  it("should return 1 for 6!", () => {
+    expect(trailingZero2(6n)).toBe(1n);
+  });
+
+  it("should return 1 for 9!", () => {
+    expect(trailingZero2(9n)).toBe(1n);
+  });
+
+  it("should return 2 for 10!", () => {
+    expect(trailingZero2(10n)).toBe(2n);
+  });
+
+  it("should return 2 for 11!", () => {
+    expect(trailingZero2(11n)).toBe(2n);
+  });
+
+  it("should return 2 for 14!", () => {
+    expect(trailingZero2(14n)).toBe(2n);
+  });
+
+  it("should return 3 for 15!", () => {
+    expect(trailingZero2(15n)).toBe(3n);
+  });
+
+  it("should return 4 for 20!", () => {
+    expect(trailingZero2(20n)).toBe(4n);
+  });
+
+  it("should return 4 for 24!", () => {
+    expect(trailingZero2(24n)).toBe(4n);
+  });
+
+  it("should return 6 for 25! (25 = 5², extra factor of 5)", () => {
+    expect(trailingZero2(25n)).toBe(6n);
+  });
+
+  it("should return 7 for 30!", () => {
+    expect(trailingZero2(30n)).toBe(7n);
+  });
+
+  it("should return 12 for 50!", () => {
+    expect(trailingZero2(50n)).toBe(12n);
+  });
+
+  it("should return 24 for 100!", () => {
+    expect(trailingZero2(100n)).toBe(24n);
+  });
+
+  it("should return 31 for 125! (125 = 5³, extra factor of 5)", () => {
+    expect(trailingZero2(125n)).toBe(31n);
+  });
+
+  it("should return 49 for 200!", () => {
+    expect(trailingZero2(200n)).toBe(49n);
+  });
+
+  it("should return 62 for 250!", () => {
+    expect(trailingZero2(250n)).toBe(62n);
+  });
+
+  it("should return 124 for 500!", () => {
+    expect(trailingZero2(500n)).toBe(124n);
+  });
+
+  it("should return 249 for 1000!", () => {
+    expect(trailingZero2(1000n)).toBe(249n);
+  });
+
+  it("should always return a non-negative bigint", () => {
+    for (let n = 0n; n <= 30n; n++) {
+      const result = trailingZero2(n);
+      expect(result).toBeGreaterThanOrEqual(0n);
+      expect(typeof result).toBe("bigint");
+    }
+  });
+
+  it("trailing zeros should be non-decreasing as n increases", () => {
+    let prev = trailingZero2(0n);
+    for (let n = 1n; n <= 30n; n++) {
+      const curr = trailingZero2(n);
+      expect(curr).toBeGreaterThanOrEqual(prev);
+      prev = curr;
+    }
+  });
+
+  it("trailing zeros should jump at every multiple of 5", () => {
+    expect(trailingZero2(5n)).toBeGreaterThan(trailingZero2(4n));
+    expect(trailingZero2(10n)).toBeGreaterThan(trailingZero2(9n));
+    expect(trailingZero2(15n)).toBeGreaterThan(trailingZero2(14n));
+    expect(trailingZero2(20n)).toBeGreaterThan(trailingZero2(19n));
+    expect(trailingZero2(25n)).toBeGreaterThan(trailingZero2(24n));
+  });
+
+  it("25! should have 2 more trailing zeros than 24! (25 = 5²)", () => {
+    expect(trailingZero2(25n) - trailingZero2(24n)).toBe(2n);
+  });
+
+  it("125! should have 3 more trailing zeros than 124! (125 = 5³)", () => {
+    expect(trailingZero2(125n) - trailingZero2(124n)).toBe(3n);
   });
 });
 

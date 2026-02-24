@@ -37,6 +37,36 @@ export const trailingZero = function (number: bigint) {
     Big O => O(n)
 */
 
+export const trailingZero2 = function (number: bigint) {
+  let factorial = 1n;
+  let trailingZeros = 0n;
+
+  // prettier-ignore
+  for (let i = 2n; i <= number; ++i)
+    factorial *= i;
+
+  while (factorial % 10n === 0n) {
+    ++trailingZeros;
+    factorial /= 10n;
+  }
+
+  return trailingZeros;
+};
+
+/*
+  TIME COMPLEXITIES
+    Worst Case => O(n)
+    Average Case => O(n)
+    Best Case => O(1)
+  
+  SPACE COMPLEXITY ==> O(1)
+  
+  Asymptotic Notations
+    Omega =>  Ω(1)
+    Theta => Θ(n) ==> for Worst Case
+    Big O => O(n)
+*/
+
 export const trailingZeroByFive = function (number: number) {
   let trailingZero = 0;
 
