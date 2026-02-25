@@ -41,11 +41,9 @@ export const factorialDigitsRecursive = function (
 
   // prettier-ignore
   if (number === 0 || number === 1)
-    return accm + 1;
+    return Math.floor(accm) + 1;
 
-  return Math.floor(
-    factorialDigitsRecursive(number - 1, accm + Math.log10(number)),
-  );
+  return factorialDigitsRecursive(number - 1, accm + Math.log10(number));
 };
 
 /*

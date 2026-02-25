@@ -9,7 +9,7 @@ import {
 
 // ─── factorialDigitsFormulaIterative1 ──────────────────────────────────────────
 
-describe.skip("factorialDigitsFormulaIterative1", () => {
+describe("factorialDigitsFormulaIterative1", () => {
   it("should return 1 digit for 0!", () => {
     expect(factorialDigitsFormulaIterative1(0)).toBe(1);
   });
@@ -102,7 +102,7 @@ describe.skip("factorialDigitsFormulaIterative1", () => {
 
 // ─── factorialDigitsIterative2 ─────────────────────────────────────────────────
 
-describe.skip("factorialDigitsIterative2", () => {
+describe("factorialDigitsIterative2", () => {
   it("should return 1 digit for 0!", () => {
     expect(factorialDigitsIterative2(0)).toBe(1);
   });
@@ -308,7 +308,7 @@ describe("factorialDigitsIterative3", () => {
 
 // ─── factorialDigitsFormula (Stirling's approximation) ─────────────────────────
 
-describe.skip("factorialDigitsFormula", () => {
+describe("factorialDigitsFormula", () => {
   it("should return 1 digit for 0!", () => {
     expect(factorialDigitsFormula(0)).toBe(1);
   });
