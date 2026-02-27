@@ -12,6 +12,10 @@ describe("gcd", () => {
     expect(gcd(0, 5)).toBe(5);
   });
 
+  it("gcd(0, 6) should be 6", () => {
+    expect(gcd(0, 6)).toBe(6);
+  });
+
   it("gcd(5, 0) should be 0's partner → 5", () => {
     expect(gcd(5, 0)).toBe(5);
   });
