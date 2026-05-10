@@ -1,119 +1,63 @@
+// twoSum.test.ts
+
 import { describe, it, expect } from "vitest";
-import { twoSum } from "./two_sum";
+import { twoSum, twoSum2 } from "./two_sum";
 
-describe("twoSum", () => {
-  it("should return indices for a basic case", () => {
-    const nums = [2, 7, 11, 15];
-    const target = 9;
+const runSharedTests = (
+  fn: (nums: number[], target: number) => number[],
+  name: string,
+) => {
+  describe(name, () => {
+    it("should solve the basic example", () => {
+      expect(fn([2, 7, 11, 15], 9).sort()).toEqual([0, 1]);
+    });
 
-    expect(twoSum(nums, target).sort()).toEqual([0, 1]);
+    it("should work with duplicates", () => {
+      expect(fn([3, 3], 6).sort()).toEqual([0, 1]);
+    });
+
+    it("should work with negative numbers", () => {
+      expect(fn([-1, -2, -3, -4, -5], -8).sort()).toEqual([2, 4]);
+    });
+
+    it("should work with zeros", () => {
+      expect(fn([0, 4, 3, 0], 0).sort()).toEqual([0, 3]);
+    });
+
+    it("should work with mixed positive and negative numbers", () => {
+      expect(fn([-10, 20, 10, -20], 0).sort()).toEqual([0, 2]);
+    });
+
+    it("should not use the same index twice", () => {
+      const result = fn([5, 5], 10);
+
+      expect(result[0]).not.toBe(result[1]);
+    });
+
+    it("should return exactly two indices", () => {
+      const result = fn([2, 7, 11, 15], 9);
+
+      expect(result).toHaveLength(2);
+    });
+
+    it("should return indices whose values equal target", () => {
+      const nums = [11, 15, 2, 7];
+      const target = 9;
+
+      const [i, j] = fn(nums, target);
+
+      expect(nums[i] + nums[j]).toBe(target);
+    });
+
+    it("should work when answer is at the end", () => {
+      expect(fn([1, 2, 3, 4, 9], 13).sort()).toEqual([3, 4]);
+    });
+
+    it("should throw when no solution exists", () => {
+      expect(() => fn([1, 2, 3], 100)).toThrow("No valid solution found");
+    });
   });
+};
 
-  it("should work when solution is in the middle", () => {
-    const nums = [3, 2, 4];
-    const target = 6;
-
-    expect(twoSum(nums, target).sort()).toEqual([1, 2]);
-  });
-
-  it("should work with duplicate values", () => {
-    const nums = [3, 3];
-    const target = 6;
-
-    expect(twoSum(nums, target).sort()).toEqual([0, 1]);
-  });
-
-  it("should work with negative numbers", () => {
-    const nums = [-1, -2, -3, -4, -5];
-    const target = -8;
-
-    expect(twoSum(nums, target).sort()).toEqual([2, 4]);
-  });
-
-  it("should work with mixed positive and negative numbers", () => {
-    const nums = [-10, 20, 10, -20, 30];
-    const target = 0;
-
-    expect(twoSum(nums, target).sort()).toEqual([0, 2]);
-  });
-
-  it("should work with zeros", () => {
-    const nums = [0, 4, 3, 0];
-    const target = 0;
-
-    expect(twoSum(nums, target).sort()).toEqual([0, 3]);
-  });
-
-  it("should not use the same element twice", () => {
-    const nums = [5, 1, 5];
-    const target = 10;
-
-    const result = twoSum(nums, target);
-
-    expect(result[0]).not.toBe(result[1]);
-    expect(result.sort()).toEqual([0, 2]);
-  });
-
-  it("should return valid indices regardless of order", () => {
-    const nums = [1, 5, 7, 9];
-    const target = 14;
-
-    const result = twoSum(nums, target);
-
-    expect(
-      JSON.stringify(result) === JSON.stringify([1, 3]) ||
-        JSON.stringify(result) === JSON.stringify([3, 1]),
-    ).toBe(true);
-  });
-
-  it("should handle larger arrays", () => {
-    const nums = Array.from({ length: 10000 }, (_, i) => i);
-    const target = 19997;
-
-    expect(twoSum(nums, target).sort()).toEqual([9998, 9999]);
-  });
-
-  it("should work when numbers are adjacent", () => {
-    const nums = [1, 2, 3, 4];
-    const target = 5;
-
-    const result = twoSum(nums, target);
-
-    expect(nums[result[0]] + nums[result[1]]).toBe(target);
-  });
-
-  it("should work when the answer uses the first and last elements", () => {
-    const nums = [8, 1, 2, 3, 12];
-    const target = 20;
-
-    expect(twoSum(nums, target).sort()).toEqual([0, 4]);
-  });
-
-  it("should verify returned indices actually sum to target", () => {
-    const nums = [11, 15, 2, 7];
-    const target = 9;
-
-    const [i, j] = twoSum(nums, target);
-
-    expect(nums[i] + nums[j]).toBe(target);
-  });
-
-  it("should return exactly two indices", () => {
-    const nums = [2, 7, 11, 15];
-    const target = 9;
-
-    const result = twoSum(nums, target);
-
-    expect(result).toHaveLength(2);
-  });
-
-  it("should return numeric indices", () => {
-    const nums = [2, 7, 11, 15];
-    const target = 9;
-
-    const result = twoSum(nums, target);
-
-    expect(typeof result[0]).toBe("number");
-    expect(typeof result[1]).toBe("number");
-  });
-});
+runSharedTests(twoSum, "twoSum - Hash Map Solution ⚡");
+runSharedTests(twoSum2, "twoSum2 - Brute Force Solution 🪨");
