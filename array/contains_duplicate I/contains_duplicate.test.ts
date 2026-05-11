@@ -1,5 +1,3 @@
-// containsDuplicate.test.ts
-
 import { describe, it, expect } from "vitest";
 import { containsDuplicate, containsDuplicate2 } from "./contains_duplicate";
 
