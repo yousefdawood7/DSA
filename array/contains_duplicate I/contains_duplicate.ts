@@ -23,5 +23,5 @@ export const containsDuplicate2 = function (nums: number[]): boolean {
 
 /*
   TIME COMPLEXITIES ==> O(n)
-  SPACE COMPLEXITY ==> O(1)
+  SPACE COMPLEXITY ==> O(n)
 */
