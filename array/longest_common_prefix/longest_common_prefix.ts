@@ -28,7 +28,7 @@ export function longestCommonPrefix(strs: string[]): string {
       if (currentSlice !== slicedString)
         isCommonPrefix = false;
     }
-    /**
+    /*
       if it's not a common prefix we return the last common prefix we had 
       (because at that point we will have the current common prefix)
     */
@@ -40,3 +40,5 @@ export function longestCommonPrefix(strs: string[]): string {
 
   return prefixLetters;
 }
+
+// problem: https://leetcode.com/problems/longest-common-prefix/
