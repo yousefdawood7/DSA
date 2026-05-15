@@ -1,4 +1,4 @@
-function isAnagram(s: string, t: string): boolean {
+export function isAnagram(s: string, t: string): boolean {
   // prettier-ignore
   if (s.length !== t.length)
     return false;
@@ -30,7 +30,7 @@ function isAnagram(s: string, t: string): boolean {
   SPACE COMPLEXITY ==> O(n)
 */
 
-function isAnagram2(s: string, t: string): boolean {
+export function isAnagram2(s: string, t: string): boolean {
   // prettier-ignore
   if (s.length !== t.length)
     return false;
